@@ -114,10 +114,8 @@ curl_setopt($ch, CURLOPT_COOKIEJAR, getcwd().'/cookie.txt');
     curl_setopt($ch, CURLOPT_HTTPHEADER, array(
   'Host: api.stripe.com',
   'Origin: https://checkout.stripe.com',
-  'Accept-Encoding: ',
   'Referer: https://checkout.stripe.com/',
-  'content-type: application/x-www-form-urlencoded',
-  'Cookie: ',
+  'content-type: application/x-www-form-urlencoded', 
   'accept: application/json',
   'sec-fetch-dest: empty',
   'sec-fetch-mode: cors',
